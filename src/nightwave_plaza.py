@@ -1,29 +1,29 @@
 import requests
 
 class NightWavePlaza:
-	def __init__(self):
+	def __init__(self) -> None:
 		self.api = "https://api.plaza.one"
 		self.headers = {
 			"user-agent": "NightwavePlaza/1.4.1 (Android: SM-G9880; samsung z3q; ru)",
 			"np-user-agent": "Nightwave Plaza Axios"
 		}
 
-	def get_status(self):
+	def get_status(self) -> dict:
 		return requests.get(
 			f"{self.api}/status",
 			headers=self.headers).json()
 
-	def get_random_background(self):
+	def get_random_background(self) -> dict:
 		return requests.get(
 			f"{self.api}/backgrounds/random",
 			headers=self.headers).json()
 
-	def get_captcha(self):
+	def get_captcha(self) -> dict:
 		return requests.get(
 			f"{self.api}/captcha",
 			headers=self.headers).json()
 
-	def login(self, username: str, password: str):
+	def login(self, username: str, password: str) -> dict:
 		data = {
 			"username": username,
 			"password": password
@@ -43,7 +43,7 @@ class NightWavePlaza:
 			captcha: str,
 			username: str,
 			password: str,
-			captcha_key: str):
+			captcha_key: str) -> dict:
 		data = {
 			"captcha": captcha,
 			"email": email,
@@ -56,34 +56,34 @@ class NightWavePlaza:
 			data=data,
 			headers=self.headers).json()
 
-	def set_reaction(self, reaction: int):
+	def set_reaction(self, reaction: int) -> dict:
 		data = {"reaction": reaction}
 		return requests.post(
 			f"{self.api}/reactions",
 			data=data,
 			headers=self.headers).json()
 
-	def get_backgrounds_list(self):
+	def get_backgrounds_list(self) -> dict:
 		return requests.get(
 			f"{self.api}/backgrounds",
 			headers=self.headers).json()
 
-	def get_play_history(self, page: int = 1):
+	def get_play_history(self, page: int = 1) -> dict:
 		return requests.get(
 			f"{self.api}/history/{page}",
 			headers=self.headers).json()
 
-	def get_ratings(self, type: str = "overtime", page: int = 1):
+	def get_ratings(self, type: str = "overtime", page: int = 1) -> dict:
 		return requests.get(
 			f"{self.api}/ratings/{type}/{page}",
 			headers=self.headers).json()
 
-	def get_news(self, page: int = 1):
+	def get_news(self, page: int = 1) -> dict:
 		return requests.get(
 			f"{self.api}/news/{page}",
 			headers=self.headers).json()
 
-	def get_song_favorites(self, page: int = 1):
+	def get_song_favorites(self, page: int = 1) -> dict:
 		return requests.get(
 			f"{self.api}/user/favorites/{page}",
 			headers=self.headers).json()
@@ -91,7 +91,7 @@ class NightWavePlaza:
 	def change_password(
 			self,
 			current_password: str,
-			new_password: str):
+			new_password: str) -> dict:
 		data = {
 			"current_password": current_password,
 			"password": new_password
@@ -101,7 +101,7 @@ class NightWavePlaza:
 			data=data,
 			headers=self.headers).json()
 
-	def change_email(self, email: str, password: str):
+	def change_email(self, email: str, password: str) -> dict:
 		data = {
 			"current_password": password,
 			"email": email
@@ -115,7 +115,7 @@ class NightWavePlaza:
 			self,
 			email: str,
 			captcha: str,
-			captcha_key: str):
+			captcha_key: str) -> dict:
 		data = {
 			"captcha": captcha,
 			"email": email,
@@ -126,29 +126,29 @@ class NightWavePlaza:
 			data=data,
 			headers=self.headers).json()
 
-	def get_song_info(self, song_id: str):
+	def get_song_info(self, song_id: str) -> dict:
 		return requests.get(
 			f"{self.api}/songs/{song_id}",
 			headers=self.headers).json()
 
-	def get_account_info(self):
+	def get_account_info(self) -> dict:
 		return requests.get(
 			f"{self.api}/user",
 			headers=self.headers).json()
 
-	def add_song_to_favorites(self, song_id: str):
+	def add_song_to_favorites(self, song_id: str) -> dict:
 		data = {"song_id": song_id}
 		return requests.post(
 			f"{self.api}/user/favorites",
 			data=data,
 			headers=self.headers).json()
 	
-	def get_on_screen_data(self):
+	def get_on_screen_data(self) -> dict:
 		return requests.get(
 			f"{self.api}/status/on-screen-data",
 			headers=self.headers).json()
 	
-	def get_background_info(self, background_id: str):
+	def get_background_info(self, background_id: str) -> dict:
 		return requests.get(
 			f"{self.api}/backgrounds/{background_id}",
 			headers=self.headers).json()
